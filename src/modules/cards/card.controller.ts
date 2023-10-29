@@ -11,6 +11,7 @@ import { Routes, Services } from "src/utils/constants";
 import { CardDocument } from "./card.model";
 import { CreateCardDto } from "./dtos/create-card.dto";
 import { ICardsService } from "./card";
+import { StatusOk } from "src/utils/types/ok";
 
 @Controller(Routes.CARDS)
 export class CardsController {
@@ -28,10 +29,11 @@ export class CardsController {
 
   @Get("/")
   @HttpCode(HttpStatus.OK)
-  async findCards(): Promise<{success:boolean,data:CardDocument[], }> {
+  async findCards(): Promise<StatusOk<CardDocument[]>> {
     const cards= await this.cardsService.getAllCards();
     return {
       success:true,
+      message:"Cards found",
       data:cards,
     }
   }

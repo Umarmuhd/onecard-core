@@ -28,7 +28,11 @@ export class CardsController {
 
   @Get("/")
   @HttpCode(HttpStatus.OK)
-  async findCards(): Promise<CardDocument[]> {
-    return this.cardsService.findCards();
+  async findCards(): Promise<{success:boolean,data:CardDocument[], }> {
+    const cards= await this.cardsService.getAllCards();
+    return {
+      success:true,
+      data:cards,
+    }
   }
 }

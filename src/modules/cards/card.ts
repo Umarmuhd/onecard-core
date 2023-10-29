@@ -3,5 +3,5 @@ import { CardDocument } from "./card.model";
 
 export interface ICardsService {
   createCard(createCardDto: CreateCardDto): Promise<CardDocument>;
-  findCards(): Promise<CardDocument[]>;
+  getAllCards(): Promise<CardDocument[]>;
 }

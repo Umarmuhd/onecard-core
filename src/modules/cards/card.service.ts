@@ -44,7 +44,8 @@ export class CardsService implements ICardsService {
     return Card;
   }
 
-  async findCards(): Promise<CardDocument[]> {
-    return this.cardRepository.find();
+  async getAllCards(): Promise<CardDocument[]> {
+    const cards = await this.cardRepository.find();
+    return cards;
   }
 }

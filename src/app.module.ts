@@ -3,6 +3,7 @@ import { UserModule } from './modules/user/user.module';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './modules/auth/auth.module';
 import { SessionModule } from './modules/session/session.module';
+import { CardModule } from './modules/cards/card.module';
 
 import mailerConfig from './config/mailer.config';
 import authConfig from './config/auth.config';
@@ -24,6 +25,7 @@ import { HelperModule } from './helper/helper.module';
     SessionModule,
     AuthModule,
     UserModule,
+    CardModule,
     LoggerModule,
     HelperModule,
   ],

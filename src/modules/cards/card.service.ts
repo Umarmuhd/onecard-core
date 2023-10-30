@@ -6,14 +6,15 @@ import { ICardsService } from "./card";
 import { CardStatus } from "./card.model";
 import { CreateCardIssueDto } from "./dtos/create-issue.dto";
 import { CardIssuesRepository } from "./card_issues.repository";
-import { UsersRepository } from "../user/users.repository";
+// import { UsersService } from "../user/user.service";
+import mongoose from "mongoose";
 
 @Injectable()
 export class CardsService implements ICardsService {
   constructor(
     private readonly cardRepository: CardRepository,
+    // private readonly userService: UsersService,
     private readonly cardIssuesRepository: CardIssuesRepository,
-    private readonly userRepository: UsersRepository,
   ) {}
 
   async createCard(createCardDto: CreateCardDto): Promise<CardDocument> {
@@ -73,7 +74,8 @@ export class CardsService implements ICardsService {
 
     const issuer = "";
 
-    const user = await this.userRepository.find({});
+    // const user = await this.userService.findOneUser({});
+    const user = "";
 
     const cardIssues = await this.cardIssuesRepository.create({
       ...createCardIssuesDto,
@@ -81,7 +83,7 @@ export class CardsService implements ICardsService {
       card: card._id,
       deactivatedAt: null,
       issuer: issuer,
-      user: user[0]._id,
+      user: new mongoose.Types.ObjectId(user),
     });
 
     console.log(cardIssues);

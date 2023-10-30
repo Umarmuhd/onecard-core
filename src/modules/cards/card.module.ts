@@ -8,6 +8,8 @@ import { LoggerModule } from "src/logger";
 import { CardRepository } from "./cards.repository";
 import { CardIssuesRepository } from "./card_issues.repository";
 import { CardIssuesDocument } from "./card_issues.model";
+// import { UsersRepository } from "../user/users.repository";
+// import { UsersService } from "../user/user.service";
 
 @Module({
   imports: [

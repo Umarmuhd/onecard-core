@@ -88,7 +88,7 @@ export class CardsService implements ICardsService {
 
     await this.cardRepository.findOneAndUpdate(
       { _id: card._id },
-      { $set: { status: CardStatus.Active } },
+      { $set: { status: CardStatus.Active, pin: createCardIssuesDto.pin } },
     );
   }
 }

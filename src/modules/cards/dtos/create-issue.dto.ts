@@ -22,7 +22,4 @@ export class CreateCardIssueDto {
   @ApiProperty({ example: "" })
   @IsNotEmpty()
   pin: string;
-
-  @IsNotEmpty()
-  confirmPin?: string;
 }

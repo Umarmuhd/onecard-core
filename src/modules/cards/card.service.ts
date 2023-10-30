@@ -68,7 +68,7 @@ export class CardsService implements ICardsService {
       throw new HttpException("Card not found", HttpStatus.NOT_FOUND);
     }
 
-    if (card.cvV2 != createCardIssuesDto.cvv) {
+    if (card.cvV2 != createCardIssuesDto.cvc) {
       throw new HttpException("Invalid CVV", HttpStatus.BAD_REQUEST);
     }
 

@@ -8,7 +8,7 @@ export class CreateCardIssueDto {
   email: string;
 
   @ApiProperty({ example: "" })
-  @MinLength(6)
+  @MinLength(5)
   otp: string;
 
   @ApiProperty({ example: "" })
@@ -17,7 +17,7 @@ export class CreateCardIssueDto {
 
   @ApiProperty({ example: "" })
   @IsNotEmpty()
-  cvv: string;
+  cvc: string;
 
   @ApiProperty({ example: "" })
   @IsNotEmpty()

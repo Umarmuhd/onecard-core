@@ -1,6 +1,6 @@
-import { registerAs } from '@nestjs/config';
-import { AppConfig } from './config.type';
-import validateConfig from 'src/utils/validate-config';
+import { registerAs } from "@nestjs/config";
+import { AppConfig } from "./config.type";
+import validateConfig from "src/utils/validate-config";
 import {
   IsEnum,
   IsInt,
@@ -9,12 +9,12 @@ import {
   IsUrl,
   Max,
   Min,
-} from 'class-validator';
+} from "class-validator";
 
 enum Environment {
-  Development = 'development',
-  Production = 'production',
-  Test = 'test',
+  Development = "development",
+  Production = "production",
+  Test = "test",
 }
 
 class EnvironmentVariablesValidator {
@@ -41,20 +41,20 @@ class EnvironmentVariablesValidator {
   API_PREFIX: string;
 }
 
-export default registerAs<AppConfig>('app', () => {
+export default registerAs<AppConfig>("app", () => {
   validateConfig(process.env, EnvironmentVariablesValidator);
 
   return {
-    nodeEnv: process.env.NODE_ENV || 'development',
-    name: process.env.APP_NAME || 'app',
+    nodeEnv: process.env.NODE_ENV || "development",
+    name: process.env.APP_NAME || "app",
     workingDirectory: process.env.PWD || process.cwd(),
     frontendDomain: process.env.FRONTEND_DOMAIN,
-    backendDomain: process.env.BACKEND_DOMAIN ?? 'http://localhost',
+    backendDomain: process.env.BACKEND_DOMAIN ?? "http://localhost",
     port: process.env.APP_PORT
       ? parseInt(process.env.APP_PORT, 10)
       : process.env.PORT
       ? parseInt(process.env.PORT, 10)
-      : 5000,
-    apiPrefix: process.env.API_PREFIX || 'api',
+      : 5100,
+    apiPrefix: process.env.API_PREFIX || "api",
   };
 });

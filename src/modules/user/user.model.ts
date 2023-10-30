@@ -1,14 +1,14 @@
-import { Prop, Schema } from '@nestjs/mongoose';
-import { AbstractDocument } from 'src/database';
+import { Prop, Schema } from "@nestjs/mongoose";
+import { AbstractDocument } from "src/database";
 
 export enum UserStatus {
-  Active = 'active',
-  Inactive = 'inactive',
+  Active = "active",
+  Inactive = "inactive",
 }
 
 @Schema({ versionKey: false })
 export class UserDocument extends AbstractDocument {
-  static readonly collectionName = 'users';
+  static readonly collectionName = "users";
 
   @Prop()
   email: string;

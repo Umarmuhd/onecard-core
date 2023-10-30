@@ -6,11 +6,14 @@ import { DatabaseModule } from "src/database";
 import { CardDocument } from "./card.model";
 import { LoggerModule } from "src/logger";
 import { CardRepository } from "./cards.repository";
+import { CardIssuesRepository } from "./card_issues.repository";
+import { CardIssuesDocument } from "./card_issues.model";
 
 @Module({
   imports: [
     DatabaseModule,
     DatabaseModule.forFeature([CardDocument]),
+    DatabaseModule.forFeature([CardIssuesDocument]),
     LoggerModule,
   ],
   controllers: [CardsController],
@@ -20,6 +23,7 @@ import { CardRepository } from "./cards.repository";
       useClass: CardsService,
     },
     CardRepository,
+    CardIssuesRepository,
   ],
   exports: [
     {

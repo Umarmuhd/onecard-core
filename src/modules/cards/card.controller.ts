@@ -12,6 +12,7 @@ import { CardDocument } from "./card.model";
 import { CreateCardDto } from "./dtos/create-card.dto";
 import { ICardsService } from "./card";
 import { StatusOk } from "src/utils/types/ok";
+import { CreateCardIssueDto } from "./dtos/create-issue.dto";
 
 @Controller(Routes.CARDS)
 export class CardsController {
@@ -27,14 +28,20 @@ export class CardsController {
     return this.cardsService.createCard(createCardDto);
   }
 
+  @Post("/issue")
+  @HttpCode(HttpStatus.NO_CONTENT)
+  async issueCard(@Body() issueCardDto: CreateCardIssueDto): Promise<void> {
+    return this.cardsService.createCardIssues(issueCardDto);
+  }
+
   @Get("/")
   @HttpCode(HttpStatus.OK)
   async findCards(): Promise<StatusOk<CardDocument[]>> {
-    const cards= await this.cardsService.getAllCards();
+    const cards = await this.cardsService.getAllCards();
     return {
-      success:true,
-      message:"Cards found",
-      data:cards,
-    }
+      success: true,
+      message: "Cards found",
+      data: cards,
+    };
   }
 }

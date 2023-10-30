@@ -62,11 +62,8 @@ export class CardDocument extends AbstractDocument {
   contactlessTransactionLimit: number;
 
   @Prop()
-  transactionPin: string;
-
-  @Prop()
   status?: CardStatus;
 
   @Prop()
-  hash: string;
+  pin: string;
 }

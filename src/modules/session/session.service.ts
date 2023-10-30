@@ -1,7 +1,7 @@
-import { Injectable } from '@nestjs/common';
-import { SessionRepository } from './session.repository';
-import { SessionDocument } from './session.model';
-import { ISessionService } from './session';
+import { Injectable } from "@nestjs/common";
+import { SessionRepository } from "./session.repository";
+import { SessionDocument } from "./session.model";
+import { ISessionService } from "./session";
 
 interface CreateSessionDto {
   user: string;

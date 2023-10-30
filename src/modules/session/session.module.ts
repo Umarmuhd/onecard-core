@@ -1,10 +1,10 @@
-import { Module } from '@nestjs/common';
-import { SessionService } from './session.service';
-import { Services } from 'src/utils/constants';
-import { DatabaseModule } from 'src/database';
-import { SessionDocument } from './session.model';
-import { LoggerModule } from 'src/logger';
-import { SessionRepository } from './session.repository';
+import { Module } from "@nestjs/common";
+import { SessionService } from "./session.service";
+import { Services } from "src/utils/constants";
+import { DatabaseModule } from "src/database";
+import { SessionDocument } from "./session.model";
+import { LoggerModule } from "src/logger";
+import { SessionRepository } from "./session.repository";
 
 @Module({
   imports: [

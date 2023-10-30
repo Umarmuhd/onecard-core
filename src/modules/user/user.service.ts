@@ -1,12 +1,12 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { CreateUserDto } from './dtos/create-user.dto';
-import { UsersRepository } from './users.repository';
-import { UserDocument } from './user.model';
-import { FilterQuery } from 'mongoose';
-import { UpdateUserDto } from './dtos/update-user.dto';
-import { NullableType } from 'src/utils/types/nullable.type';
-import { IUsersService } from './user';
-import { IPaginationOptions } from 'src/utils/types/pagination-options';
+import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
+import { CreateUserDto } from "./dtos/create-user.dto";
+import { UsersRepository } from "./users.repository";
+import { UserDocument } from "./user.model";
+import { FilterQuery } from "mongoose";
+import { UpdateUserDto } from "./dtos/update-user.dto";
+import { NullableType } from "src/utils/types/nullable.type";
+import { IUsersService } from "./user";
+import { IPaginationOptions } from "src/utils/types/pagination-options";
 
 @Injectable()
 export class UsersService implements IUsersService {
@@ -18,7 +18,7 @@ export class UsersService implements IUsersService {
     });
 
     if (existingUser) {
-      throw new HttpException('User already exists', HttpStatus.CONFLICT);
+      throw new HttpException("User already exists", HttpStatus.CONFLICT);
     }
 
     const user = await this.usersRepository.create({
@@ -50,4 +50,3 @@ export class UsersService implements IUsersService {
     );
   }
 }
-

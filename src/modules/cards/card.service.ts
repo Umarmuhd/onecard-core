@@ -6,13 +6,14 @@ import { ICardsService } from "./card";
 import { CardStatus } from "./card.model";
 import { CreateCardIssueDto } from "./dtos/create-issue.dto";
 import { CardIssuesRepository } from "./card_issues.repository";
-import * as mongoose from "mongoose";
+import { UsersRepository } from "../user/users.repository";
 
 @Injectable()
 export class CardsService implements ICardsService {
   constructor(
     private readonly cardRepository: CardRepository,
     private readonly cardIssuesRepository: CardIssuesRepository,
+    private readonly userRepository: UsersRepository,
   ) {}
 
   async createCard(createCardDto: CreateCardDto): Promise<CardDocument> {
@@ -60,25 +61,33 @@ export class CardsService implements ICardsService {
     createCardIssuesDto: CreateCardIssueDto,
   ): Promise<void> {
     const card = await this.cardRepository.findOne({
-      _id: createCardIssuesDto.card,
+      pan: { $regex: createCardIssuesDto.last6Digit + "$" },
     });
     if (!card) {
       throw new HttpException("Card not found", HttpStatus.NOT_FOUND);
     }
+
+    if (card.cvV2 != createCardIssuesDto.cvv) {
+      throw new HttpException("Invalid CVV", HttpStatus.BAD_REQUEST);
+    }
+
+    const issuer = "";
+
+    const user = await this.userRepository.find({});
 
     const cardIssues = await this.cardIssuesRepository.create({
       ...createCardIssuesDto,
       activationDate: new Date(),
       card: card._id,
       deactivatedAt: null,
-      issuer: createCardIssuesDto.issuer,
-      user: new mongoose.Types.ObjectId(createCardIssuesDto.user),
+      issuer: issuer,
+      user: user[0]._id,
     });
 
     console.log(cardIssues);
 
     await this.cardRepository.findOneAndUpdate(
-      { _id: createCardIssuesDto.card },
+      { _id: card._id },
       { $set: { status: CardStatus.Active } },
     );
   }

@@ -5,20 +5,24 @@ import { ApiProperty } from "@nestjs/swagger";
 export class CreateCardIssueDto {
   @ApiProperty({ example: "" })
   @MinLength(6)
-  user: string;
+  email: string;
+
+  @ApiProperty({ example: "" })
+  @MinLength(6)
+  otp: string;
 
   @ApiProperty({ example: "" })
   @IsNotEmpty()
-  card: string;
+  last6Digit: string;
 
   @ApiProperty({ example: "" })
   @IsNotEmpty()
-  issuer: string;
+  cvv: string;
 
   @ApiProperty({ example: "" })
   @IsNotEmpty()
-  activationDate: Date;
+  pin: string;
 
   @IsNotEmpty()
-  deactivatedAt?: Date;
+  confirmPin?: string;
 }

@@ -5,7 +5,7 @@ import { CardDocument } from "./card.model";
 import { ICardsService } from "./card";
 import { CardStatus } from "./card.model";
 import { CreateCardIssueDto } from "./dtos/create-issue.dto";
-import { CardIssuesRepository } from "./card_issues.repository";
+import { IssuedCardRepository } from "./issued_card.repository";
 // import { UsersService } from "../user/user.service";
 import mongoose from "mongoose";
 
@@ -14,7 +14,7 @@ export class CardsService implements ICardsService {
   constructor(
     private readonly cardRepository: CardRepository,
     // private readonly userService: UsersService,
-    private readonly cardIssuesRepository: CardIssuesRepository,
+    private readonly issuedCardsRepository: IssuedCardRepository,
   ) {}
 
   async createCard(createCardDto: CreateCardDto): Promise<CardDocument> {
@@ -77,7 +77,7 @@ export class CardsService implements ICardsService {
     // const user = await this.userService.findOneUser({});
     const user = "";
 
-    const cardIssues = await this.cardIssuesRepository.create({
+    const cardIssues = await this.issuedCardsRepository.create({
       ...createCardIssuesDto,
       activationDate: new Date(),
       card: card._id,

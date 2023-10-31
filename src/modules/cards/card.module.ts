@@ -6,8 +6,8 @@ import { DatabaseModule } from "src/database";
 import { CardDocument } from "./card.model";
 import { LoggerModule } from "src/logger";
 import { CardRepository } from "./cards.repository";
-import { CardIssuesRepository } from "./card_issues.repository";
-import { CardIssuesDocument } from "./card_issues.model";
+import { IssuedCardDocument } from "./issued_card.model";
+import { IssuedCardRepository } from "./issued_card.repository";
 // import { UsersRepository } from "../user/users.repository";
 // import { UsersService } from "../user/user.service";
 
@@ -15,7 +15,7 @@ import { CardIssuesDocument } from "./card_issues.model";
   imports: [
     DatabaseModule,
     DatabaseModule.forFeature([CardDocument]),
-    DatabaseModule.forFeature([CardIssuesDocument]),
+    DatabaseModule.forFeature([IssuedCardDocument]),
     LoggerModule,
   ],
   controllers: [CardsController],
@@ -25,7 +25,7 @@ import { CardIssuesDocument } from "./card_issues.model";
       useClass: CardsService,
     },
     CardRepository,
-    CardIssuesRepository,
+    IssuedCardRepository,
   ],
   exports: [
     {

@@ -5,8 +5,8 @@ import { UserDocument } from "../user/user.model";
 import { CardDocument } from "./card.model";
 
 @Schema({ versionKey: false })
-export class CardIssuesDocument extends AbstractDocument {
-  static readonly collectionName = "card_issues";
+export class IssuedCardDocument extends AbstractDocument {
+  static readonly collectionName = "issued_cards";
 
   @Prop({ type: mongoose.Schema.Types.ObjectId, ref: "user" })
   user: UserDocument["_id"];
